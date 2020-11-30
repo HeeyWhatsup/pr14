@@ -1,0 +1,162 @@
+import java.util.StringTokenizer;
+public class Main
+{
+  public static void main(String []args)
+  {
+    // Задание для класса Person
+    Person p = new Person("Данилова", "Диана", "Игоревна");
+    System.out.println(p.toString());
+    Person p1 = new Person("Караваев");
+    System.out.println(p1.toString());
+    // Задание для класса Adres под буквой а)
+    int i = 0, j = 0;
+    Adres adres = new Adres();
+    String str1 = new String("Франция, 63, Париж, Соловьево, 19, 3, 96");
+    System.out.println(str1 = str1.replaceAll(" ", ""));
+    for (String retval : str1.split(","))
+    {
+      adres.AddAdres(retval, i);
+      i++;
+    }
+    System.out.println(adres.toString());
+    // Задание для класса Adres под буквой б)
+    String str2 = new String("Франция, 63. Париж; Соловьево- 19; 3. 96");
+    System.out.println(str2=str2.replaceAll(" ", ""));
+    StringTokenizer st = new StringTokenizer(str2, ",.;-");
+    while (st.hasMoreTokens())
+    {
+      adres.AddAdres(st.nextToken(), j);
+      j++;
+    }
+    System.out.println(adres.toString());
+    
+    // Задание для класса Shirt
+    Shirt s1 = new Shirt();
+    String shirts[] = new String[11];
+    shirts[0] = "S001, Black Polo Shirt, Black, XL";
+    shirts[1] = "S002, Black Polo Shirt, Black, L";
+    shirts[2] = "S003, Blue Polo Shirt, Blue, XL";
+    shirts[3] = "S004, Blue Polo Shirt, Blue, M";
+    shirts[4] = "S005, Tan Polo Shirt, Tan, XL";
+    shirts[5] = "S006, Black T-Shirt, Black, XL";
+    shirts[6] = "S007, White T-Shirt, White, XL";
+    shirts[7] = "S008, White T-Shirt, White, L";
+    shirts[8] = "S009, Green T-Shirt, Green, S";
+    shirts[9] = "S010, Orange T-Shirt, Orange, S";
+    shirts[10] = "S011, Maroon Polo Shirt, Maroon, S";
+    for (int z = 0; z < 11; z++)
+    {
+      s1.AddShirt(shirts[z], z);
+    }
+    s1.toString();
+    // Задание для класса Number с номерами для России
+    Number num = new Number("89258147564");
+    num.NewNumber();
+    Number num1 = new Number("89267771212");
+    num1.NewNumber();
+    Number num2 = new Number("89456663636");
+    num2.NewNumber();
+  }
+}
+
+import java.util.StringTokenizer;
+public class Adres
+{
+  private String country, region, city, street, house, block, flat;
+  public Adres(){}
+  public void AddAdres(String s, int i)
+  {
+    if (i == 0) // Страна
+    {
+      country = s;
+    }
+    if (i == 1) // Регион
+    {
+      region = s;
+    }
+    if (i == 2) // Город
+    {
+      city = s;
+    }
+    if (i == 3) // Улица
+    {
+      street = s;
+    }
+    if (i == 4) // Дом
+    {
+      house = s;
+    }
+    if (i == 5) // Корпус
+    {
+      block = s;
+    }
+    if (i == 6) // Квартира
+    {
+      flat = s;
+    }
+  }
+  public String toString()
+  {
+    return ("Полный адрес: " + country + " " + region + " " + city + " " + street + " " + house + " " + block + " " +
+flat);
+  }
+}
+
+public class Number
+{
+  private String number, kod = "7";
+  public Number(String number)
+  {
+    this.number = number;
+  }
+  
+  public void NewNumber()
+  {
+    System.out.println("+<" + kod + "><" + number.substring(1, 4) + "><" + number.substring(4, 7) + "><" +
+number.substring(7, 11) + ">");
+  }
+}
+
+public class Person
+{
+  private String name, surname, patronymic;
+  Person(String surname)
+  {
+    this.surname = surname;
+  }
+  Person(String surname, String name, String patronymic)
+  {
+    this.surname = surname;
+    this.name = name;
+    this.patronymic = patronymic;
+  }
+  public String toString()
+  {
+    if(name == null || patronymic == null)
+    {
+      return surname;
+    }
+    else
+    {
+      return (surname + " " + name + " " + patronymic);
+    }
+  }
+}
+
+public class Shirt
+{
+  private String shirt [] = new String[11];
+  public void AddShirt(String s, int j)
+  {
+    shirt[j] = s;
+  }
+  
+  public String toString()
+  {
+    for(int i = 0; i < 11; i++)
+    {
+      System.out.println(shirt[i]);
+    }
+      return shirt[0];
+  }
+}
